@@ -1,0 +1,7 @@
+# Local, machine-specific, or secret overrides — never commit these.
+*.local
+
+# OS / editor cruft
+.DS_Store
+*.swp
+*~
