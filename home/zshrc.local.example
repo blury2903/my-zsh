@@ -1,0 +1,8 @@
+# Copy to ~/.zshrc.local for machine-specific or secret config.
+# ~/.zshrc sources ~/.zshrc.local LAST, if it exists. It is NOT tracked in git
+# (see .gitignore), so it is safe for tokens, proxies, and work-only settings.
+#
+# Examples:
+# export http_proxy="http://proxy.example.com:8080"
+# export GITHUB_TOKEN="..."
+# export PATH="$HOME/work/bin:$PATH"
