@@ -23,6 +23,7 @@ clone_plugin() {
   git clone --depth=1 "$url" "$dest"
 }
 
-clone_plugin zsh-autosuggestions     https://github.com/zsh-users/zsh-autosuggestions
-clone_plugin zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting
+clone_plugin zsh-autosuggestions          https://github.com/zsh-users/zsh-autosuggestions
+clone_plugin zsh-syntax-highlighting      https://github.com/zsh-users/zsh-syntax-highlighting
+clone_plugin zsh-history-substring-search https://github.com/zsh-users/zsh-history-substring-search
 log "Plugins ready."

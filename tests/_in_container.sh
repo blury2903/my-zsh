@@ -7,9 +7,13 @@ cd "$HOME/my-zsh"
 
 echo "--- assertions ---"
 command -v zsh
+command -v fzf
+command -v zoxide
+command -v eza
 test -d "$HOME/.oh-my-zsh"
 test -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
 test -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+test -d "$HOME/.oh-my-zsh/custom/plugins/zsh-history-substring-search"
 "$HOME/.local/bin/starship" --version
 test -L "$HOME/.zshrc"
 test -L "$HOME/.config/starship.toml"

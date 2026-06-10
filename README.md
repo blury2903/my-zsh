@@ -19,9 +19,10 @@ exec zsh
 
 ## What it does
 
-1. `apt` installs `zsh`, `git`, `curl`.
+1. `apt` installs `zsh`, `git`, `curl`, plus the CLI tools `fzf` (fuzzy finder),
+   `zoxide` (`z` directory jumping), and `eza` (modern `ls`; needs Ubuntu 24.04+/Debian 13+).
 2. Installs oh-my-zsh (keeping this repo's `.zshrc`).
-3. Clones `zsh-autosuggestions` and `zsh-syntax-highlighting`.
+3. Clones `zsh-autosuggestions`, `zsh-syntax-highlighting`, and `zsh-history-substring-search`.
 4. Installs [Starship](https://starship.rs) into `~/.local/bin`.
 5. Creates two symlinks (backing up anything already there):
    - `~/.zshrc` → `zsh/zshrc`

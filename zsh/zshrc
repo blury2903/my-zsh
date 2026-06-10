@@ -6,7 +6,9 @@ ZSH_DOTFILES="${${(%):-%x}:A:h}"
 # --- oh-my-zsh base -------------------------------------------------------
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME=""                       # empty: Starship provides the prompt
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+# fzf/zoxide are oh-my-zsh built-in plugins (need the fzf/zoxide binaries).
+# zsh-syntax-highlighting must stay near the end; history-substring-search after it.
+plugins=(git zsh-autosuggestions fzf zoxide zsh-syntax-highlighting zsh-history-substring-search)
 
 # --- env / PATH (before oh-my-zsh) ---------------------------------------
 [[ -r "$ZSH_DOTFILES/exports.zsh" ]] && source "$ZSH_DOTFILES/exports.zsh"
@@ -16,6 +18,13 @@ if [[ -r "$ZSH/oh-my-zsh.sh" ]]; then
 else
   echo "[my-zsh] oh-my-zsh not found at $ZSH — run the my-zsh install script." >&2
 fi
+
+# --- key bindings (after plugins load, so their widgets exist) -----------
+# history-substring-search: type a prefix, then ↑/↓ to walk matching history.
+bindkey '^[[A' history-substring-search-up
+bindkey '^[OA' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey '^[OB' history-substring-search-down
 
 # --- personal config (after oh-my-zsh so it can override) ----------------
 [[ -r "$ZSH_DOTFILES/aliases.zsh" ]]   && source "$ZSH_DOTFILES/aliases.zsh"
