@@ -51,6 +51,13 @@ Dev tools `bats` and `shellcheck` are required to run the tests. `tests/_in_cont
 in-container assertions and runs a **real** (non-`--dry-run`) install — it's only safe because
 `fresh-machine.sh` invokes it inside Docker; never run it directly on your host.
 
-## Design docs
+## Development workflow
 
-Spec and plan live in `docs/superpowers/specs/` and `docs/superpowers/plans/`.
+New features follow a branch + design-first flow — never build a feature directly on `master`:
+
+1. **Branch** off `master` (e.g. `feat/<name>`).
+2. **Write the design spec and plan before coding** — spec in `docs/superpowers/specs/`,
+   plan in `docs/superpowers/plans/`, dated like the existing ones
+   (`YYYY-MM-DD-<feature>-design.md` / `YYYY-MM-DD-<feature>.md`).
+3. Implement on the branch with atomic commits (see Conventions) and the checks in Testing.
+4. **When the work is done, confirm before merging to `master`** — ask first; never merge unprompted.
