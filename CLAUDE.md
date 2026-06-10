@@ -21,6 +21,11 @@ fresh machine. Prompt is **Starship** (not a zsh theme).
   must come BEFORE `source $ZSH/oh-my-zsh.sh`; `aliases.zsh`/`functions.zsh` AFTER.
 - **Every `bootstrap/*.sh` must stay idempotent** (skip if already done) and **honor `DRY_RUN`**
   (exported by `install.sh`). Source `lib/helpers.sh` for `log`/`warn`/`error`/`have`/`backup_and_link`.
+- **`install.sh` runs the bootstrap scripts in a fixed order**: `packages → oh-my-zsh → plugins →
+  starship`. `plugins.sh` clones into `$ZSH_CUSTOM/plugins/`, so it must run *after* oh-my-zsh exists.
+- **Adding a zsh plugin touches two files**: add the name to `plugins=(...)` in `zsh/zshrc` AND a
+  matching `clone_plugin` line in `bootstrap/plugins.sh` — oh-my-zsh only loads a plugin that has
+  already been cloned, so these must stay in sync.
 - **Secrets / machine-specific config** go in `~/.zshrc.local` (sourced last, gitignored via
   `*.local`) — never commit them. `home/zshrc.local.example` is the template.
 
@@ -42,7 +47,9 @@ for f in zsh/zshrc zsh/*.zsh; do zsh -n "$f"; done
 ./tests/fresh-machine.sh    # full Docker E2E; auto-skips if docker is absent
 ```
 
-Dev tools `bats` and `shellcheck` are required to run the tests.
+Dev tools `bats` and `shellcheck` are required to run the tests. `tests/_in_container.sh` holds the
+in-container assertions and runs a **real** (non-`--dry-run`) install — it's only safe because
+`fresh-machine.sh` invokes it inside Docker; never run it directly on your host.
 
 ## Design docs
 
