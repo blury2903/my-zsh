@@ -4,6 +4,13 @@
 
 add_newline = true
 
+# WSL2: scanning the cwd is slow on Windows-mounted paths (/mnt/c, DrvFs), so
+# bump the directory-scan timeout above the 30ms default to silence the
+# "Scanning current directory timed out" warning. Real fix: keep repos on the
+# Linux filesystem (~) instead of /mnt/c — see command_timeout for git/cmd calls.
+scan_timeout = 500
+command_timeout = 1000
+
 [character]
 success_symbol = "[>](bold green)"
 error_symbol = "[>](bold red)"
